@@ -22,13 +22,13 @@ public class HelloEJBTest {
     @Deployment
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "helloEJB.jar")
-                .addClasses(HelloEJB.class);
+                .addClasses(HelloEJB.class, HelloEJBBean.class);
     }
 
     @Test
     public void testHelloEJB() {
-        String result = helloEJB.sayHelloEJB("Michael2");
-        assertEquals("Hello Michael2", result);
+        String result = helloEJB.sayHelloEJB("Michael");
+        assertEquals("Hello Michael", result);
     }
 }
 

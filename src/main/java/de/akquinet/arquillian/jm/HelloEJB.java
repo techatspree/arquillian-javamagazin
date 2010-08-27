@@ -1,17 +1,13 @@
 package de.akquinet.arquillian.jm;
 
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 /**
- * EJB3.1. with no-interface view.
- *
  * @author <a href="mailto:michaelschuetz83@gmail.com">Michael Schuetz</a>
  */
-@Stateless
-public class HelloEJB {
+@Local
+public interface HelloEJB {
 
-	public String sayHelloEJB(String name) {
-
-		return "Hello " + name;
-	}
+    public String sayHelloEJB(String name);
 }
