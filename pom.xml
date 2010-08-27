@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <!-- Model Information -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Artifact Information  -->
+    <groupId>de.akquinet.arquillian</groupId>
+    <artifactId>javamagazin</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Arquillian javamagazin</name>
+    <description>Arquillian Javamagazin</description>
+
+    <!-- Properties -->
+    <properties>
+        <version.junit>4.8.1</version.junit>
+        <version.org.jboss.arquillian>1.0.0.Alpha3</version.org.jboss.arquillian>
+        <version.org.glassfish.embedded>3.1-b04</version.org.glassfish.embedded>
+    </properties>
+
+    <!-- Test Dependencies -->
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.arquillian</groupId>
+            <artifactId>arquillian-junit</artifactId>
+            <version>${version.org.jboss.arquillian}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Profiles -->
+    <profiles>
+        <profile>
+            <id>glassfish-embedded-3</id>
+
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-glassfish-embedded-3</artifactId>
+                    <version>${version.org.jboss.arquillian}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.extras</groupId>
+                    <artifactId>glassfish-embedded-all</artifactId>
+                    <version>${version.org.glassfish.embedded}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+</project>
+
