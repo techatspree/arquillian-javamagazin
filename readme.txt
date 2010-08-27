@@ -1,17 +1,17 @@
 
                                  arquillian-javamagazin
  Arquillian project for JavaMagazin article. Arquillian enables you to test your business logic in a remote or embedded container. Alternatively, it can deploy an archive to the container so the test can interact  as a remote client.
- 
- Example contains test for EJB.
+
+ http://jboss.org/arquillian
+
+
+ Example contains test for EJB3.
 
  Getting started - example using Glassfish Embedded 3:
- 1) download sources
- 2) configure JBoss Maven repositories in your local settings.xml. See sample settings.xml provided.
- 4) run: mvn clean install
- 
+ 1) git checkout or download sources
+ 2) run: mvn test
+
  Tests will be executed within container. Container can either be started manually or automatically by Arquillian.
- 
- All about arquillian: http://jboss.org/arquillian
 
  System requirements
  ===================
