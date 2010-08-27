@@ -28,7 +28,7 @@ public class HelloEJBTest {
     @Test
     public void testHelloEJB() {
         String result = helloEJB.sayHelloEJB("Michael");
-        assertEquals("Hello Michael", result);
+        assertEquals("Hello Mischael", result);
     }
 }
 
