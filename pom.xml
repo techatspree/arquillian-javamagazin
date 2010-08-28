@@ -143,8 +143,8 @@
                 <!-- The target version of AS to be used -->
                 <version.org.jboss.jbossas>6.0.0.20100721-M4</version.org.jboss.jbossas>
 
-                <!-- JBOSS_HOME (We'll unpack into here -->
-                <JBOSS_HOME>${project.build.directory}/jboss-${version.org.jboss.jbossas}</JBOSS_HOME>
+                <!-- jboss.home (We'll unpack into here -->
+                <jboss.home>${project.build.directory}/jboss-${version.org.jboss.jbossas}</jboss.home>
             </properties>
 
             <!--
@@ -155,7 +155,7 @@
             -->
             <dependencyManagement>
                 <dependencies>
-                          
+
                     <!-- org.jboss.jbossas -->
                     <dependency>
                         <groupId>org.jboss.jbossas</groupId>
@@ -163,27 +163,27 @@
                         <version>${version.org.jboss.jbossas}</version>
                         <type>pom</type>
                         <scope>import</scope>
-            </dependency>
-        </dependencies>
+                    </dependency>
+                </dependencies>
 
-    </dependencyManagement>
+            </dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-jbossas-embedded-6</artifactId>
-            <version>${version.org.jboss.arquillian}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.jboss.jbossas</groupId>
-            <artifactId>jboss-as-depchain</artifactId>
-            <version>${version.org.jboss.jbossas}</version>
-            <type>pom</type>
-            <scope>compile</scope>
-            <!-- Should be "test", but I can't find the GAV for JPA APIs -->
-        </dependency>
-    </dependencies>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-jbossas-embedded-6</artifactId>
+                    <version>${version.org.jboss.arquillian}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.jboss.jbossas</groupId>
+                    <artifactId>jboss-as-depchain</artifactId>
+                    <version>${version.org.jboss.jbossas}</version>
+                    <type>pom</type>
+                    <scope>compile</scope>
+                    <!-- Should be "test", but I can't find the GAV for JPA APIs -->
+                </dependency>
+            </dependencies>
 
             <build>
 
@@ -233,9 +233,9 @@
                                 <configuration>
 
                                     <additionalClasspathElements>
-                                        <additionalClasspathElement>${JBOSS_HOME}/client/jbossws-native-client.jar
+                                        <additionalClasspathElement>${jboss.home}/client/jbossws-native-client.jar
                                         </additionalClasspathElement>
-                                        <additionalClasspathElement>${JBOSS_HOME}/server/default/deploy/jbossweb.sar
+                                        <additionalClasspathElement>${jboss.home}/server/default/deploy/jbossweb.sar
                                         </additionalClasspathElement>
                                     </additionalClasspathElements>
                                     <trimStackTrace>false</trimStackTrace>
@@ -244,8 +244,7 @@
                                     <forkMode>pertest</forkMode>
 
                                     <!-- Caution: no linebreak here !-->
-                                     <argLine>-Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djava.util.logging.manager=org.jboss.logmanager.LogManager  -Djava.endorsed.dirs=${JBOSS_HOME}/lib/endorsed -Djboss.home=${JBOSS_HOME}  -Djboss.boot.server.log.dir=${JBOSS_HOME} -Dorg.jboss.reflect.spi.TypeInfoFactory=org.jboss.reflect.plugins.introspection.IntrospectionTypeInfoFactory</argLine>
-
+                                    <argLine>-Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djava.util.logging.manager=org.jboss.logmanager.LogManager  -Djava.endorsed.dirs=${jboss.home}/lib/endorsed -Djboss.home=${jboss.home}  -Djboss.boot.server.log.dir=${jboss.home} -Dorg.jboss.reflect.spi.TypeInfoFactory=org.jboss.reflect.plugins.introspection.IntrospectionTypeInfoFactory</argLine>
                                 </configuration>
                             </execution>
 
