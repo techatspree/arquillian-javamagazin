@@ -133,6 +133,137 @@
                 </dependency>
             </dependencies>
         </profile>
+
+        <!-- JBoss AS Embedded 6 container profile -->
+        <!-- TODO expects tests ending *IT - Find compromise with other profiles. prefer using *Test suffix -->
+        <profile>
+            <id>jbossas-embedded-6</id>
+
+            <properties>
+                <!-- The target version of AS to be used -->
+                <version.org.jboss.jbossas>6.0.0.20100721-M4</version.org.jboss.jbossas>
+
+                <!-- JBOSS_HOME (We'll unpack into here -->
+                <JBOSS_HOME>${project.build.directory}/jboss-${version.org.jboss.jbossas}</JBOSS_HOME>
+            </properties>
+
+            <!--
+            We also need to place the AS depchain into
+            the "dependencyManagement" section in import scope
+            so that Maven respects the "exclusion" elements
+            configured
+            -->
+            <dependencyManagement>
+                <dependencies>
+
+                    <!-- org.jboss.jbossas -->
+                    <dependency>
+                        <groupId>org.jboss.jbossas</groupId>
+                        <artifactId>jboss-as-depchain</artifactId>
+                        <version>${version.org.jboss.jbossas}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-jbossas-embedded-6</artifactId>
+            <version>${version.org.jboss.arquillian}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.jbossas</groupId>
+            <artifactId>jboss-as-depchain</artifactId>
+            <version>${version.org.jboss.jbossas}</version>
+            <type>pom</type>
+            <scope>compile</scope>
+            <!-- Should be "test", but I can't find the GAV for JPA APIs -->
+        </dependency>
+    </dependencies>
+
+            <build>
+
+                <plugins>
+
+                    <!-- Get AS and put into "target" -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>pre-integration-test</phase>
+                                <!-- So run before testing -->
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.jboss.jbossas</groupId>
+                                            <artifactId>jboss-as-distribution</artifactId>
+                                            <version>${version.org.jboss.jbossas}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+
+                    <!-- FailSafe Plugin. Expects test suffix "IT". -->
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.6</version>
+
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                                <configuration>
+
+                                    <additionalClasspathElements>
+                                        <additionalClasspathElement>${JBOSS_HOME}/client/jbossws-native-client.jar
+                                        </additionalClasspathElement>
+                                        <additionalClasspathElement>${JBOSS_HOME}/server/default/deploy/jbossweb.sar
+                                        </additionalClasspathElement>
+                                    </additionalClasspathElements>
+                                    <trimStackTrace>false</trimStackTrace>
+                                    <printSummary>true</printSummary>
+
+                                    <forkMode>pertest</forkMode>
+
+                                    <!-- Caution: no linebreak here !-->
+                                     <argLine>-Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djava.util.logging.manager=org.jboss.logmanager.LogManager  -Djava.endorsed.dirs=${JBOSS_HOME}/lib/endorsed -Djboss.home=${JBOSS_HOME}  -Djboss.boot.server.log.dir=${JBOSS_HOME} -Dorg.jboss.reflect.spi.TypeInfoFactory=org.jboss.reflect.plugins.introspection.IntrospectionTypeInfoFactory</argLine>
+
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>verify</id>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+
+                        </executions>
+                    </plugin>
+
+                </plugins>
+
+            </build>
+
+        </profile>
     </profiles>
 
 </project>
