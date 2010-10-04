@@ -225,44 +225,23 @@
                     </plugin>
 
 
-                    <!-- FailSafe Plugin. Expects test suffix "IT". -->
                     <plugin>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>2.6</version>
+                        <artifactId>maven-surefire-plugin</artifactId>
 
-                        <executions>
-                            <execution>
-                                <id>integration-test</id>
-                                <phase>integration-test</phase>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                </goals>
-                                <configuration>
+                        <configuration>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${jboss.home}/client/jbossws-native-client.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${jboss.home}/server/default/deploy/jbossweb.sar</additionalClasspathElement>
+                            </additionalClasspathElements>
 
-                                    <additionalClasspathElements>
-                                        <additionalClasspathElement>${jboss.home}/client/jbossws-native-client.jar
-                                        </additionalClasspathElement>
-                                        <additionalClasspathElement>${jboss.home}/server/default/deploy/jbossweb.sar
-                                        </additionalClasspathElement>
-                                    </additionalClasspathElements>
-                                    <trimStackTrace>false</trimStackTrace>
-                                    <printSummary>true</printSummary>
+                            <trimStackTrace>false</trimStackTrace>
+                            <printSummary>true</printSummary>
 
-                                    <forkMode>pertest</forkMode>
-
-                                    <!-- Caution: no linebreak here !-->
-                                    <argLine>-Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djava.util.logging.manager=org.jboss.logmanager.LogManager  -Djava.endorsed.dirs=${jboss.home}/lib/endorsed -Djboss.home=${jboss.home}  -Djboss.boot.server.log.dir=${jboss.home} -Dorg.jboss.reflect.spi.TypeInfoFactory=org.jboss.reflect.plugins.introspection.IntrospectionTypeInfoFactory</argLine>
-                                </configuration>
-                            </execution>
-
-                            <execution>
-                                <id>verify</id>
-                                <goals>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-
-                        </executions>
+                            <!-- Caution: no linebreak here !-->
+                            <argLine>-Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Djava.endorsed.dirs=${jboss.home}/lib/endorsed -Djboss.home=${jboss.home} -Djboss.boot.server.log.dir=${jboss.home} -Dorg.jboss.reflect.spi.TypeInfoFactory=org.jboss.reflect.plugins.introspection.IntrospectionTypeInfoFactory
+                            </argLine>
+                        </configuration>
+                            
                     </plugin>
 
                 </plugins>
