@@ -50,6 +50,9 @@
     <properties>
         <version.junit>4.8.1</version.junit>
         <version.org.jboss.arquillian>1.0.0.Alpha3</version.org.jboss.arquillian>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <!-- Test Dependencies -->
@@ -72,35 +75,14 @@
     <!-- Container Profiles -->
     <profiles>
 
-        <!-- Glassfish Embedded 3 container profile. Profile activated by default. -->
+        <!-- OpenEJB Embedded 3 container profile -->
+        <!-- the OpenEJB container has a bug. see https://issues.apache.org/jira/browse/OPENEJB-1131 and readme.txt for details -->
         <profile>
-            <id>glassfish-embedded-3</id>
+            <id>openejb-embedded-3</id>
 
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-
-            <properties>
-                <version.org.glassfish.embedded>3.1-b04</version.org.glassfish.embedded>
-            </properties>
-
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-embedded-3</artifactId>
-                    <version>${version.org.jboss.arquillian}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.extras</groupId>
-                    <artifactId>glassfish-embedded-all</artifactId>
-                    <version>${version.org.glassfish.embedded}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-
-        <!-- OpenEJB Embedded 3 container profile -->
-        <profile>
-            <id>openejb-embedded-3</id>
 
             <properties>
                 <version.org.apache.openejb_openejb.core>3.1.2</version.org.apache.openejb_openejb.core>
@@ -133,6 +115,30 @@
                 </dependency>
             </dependencies>
         </profile>
+        
+
+        <!-- Glassfish Embedded 3 container profile. Profile activated by default. -->
+        <profile>
+            <id>glassfish-embedded-3</id>
+
+            <properties>
+                <version.org.glassfish.embedded>3.1-b04</version.org.glassfish.embedded>
+            </properties>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-glassfish-embedded-3</artifactId>
+                    <version>${version.org.jboss.arquillian}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.extras</groupId>
+                    <artifactId>glassfish-embedded-all</artifactId>
+                    <version>${version.org.glassfish.embedded}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
 
         <!-- JBoss AS Embedded 6 container profile -->
         <!-- TODO expects tests ending *IT - Find compromise with other profiles. prefer using *Test suffix -->
