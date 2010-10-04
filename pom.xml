@@ -203,7 +203,7 @@
                         <executions>
                             <execution>
                                 <id>unpack</id>
-                                <phase>pre-integration-test</phase>
+                                <phase>generate-test-resources</phase>
                                 <!-- So run before testing -->
                                 <goals>
                                     <goal>unpack</goal>
@@ -238,8 +238,7 @@
                             <printSummary>true</printSummary>
 
                             <!-- Caution: no linebreak here !-->
-                            <argLine>-Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Djava.endorsed.dirs=${jboss.home}/lib/endorsed -Djboss.home=${jboss.home} -Djboss.boot.server.log.dir=${jboss.home} -Dorg.jboss.reflect.spi.TypeInfoFactory=org.jboss.reflect.plugins.introspection.IntrospectionTypeInfoFactory
-                            </argLine>
+                            <argLine>-Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Djava.endorsed.dirs=${jboss.home}/lib/endorsed -Djboss.home=${jboss.home} -Djboss.boot.server.log.dir=${jboss.home} -Dorg.jboss.reflect.spi.TypeInfoFactory=org.jboss.reflect.plugins.introspection.IntrospectionTypeInfoFactory</argLine>
                         </configuration>
                             
                     </plugin>
