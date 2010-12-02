@@ -12,9 +12,7 @@
 
  Tests will be executed within container. Container can either be started manually or automatically by Arquillian.
 
- Note: If you run the example you might see an ClassCastException in the console. This is caused by a bug in 
- the OpenEJB embedded container (https://issues.apache.org/jira/browse/OPENEJB-1131). Luckily it does not affect
- the execution of the test.
+ Note: If you run the example you might see an ClassCastException in the console. This is caused by a bug in the OpenEJB embedded container (https://issues.apache.org/jira/browse/OPENEJB-1131). Luckily it does not affect the execution of the test.
  
  Switch container
  ================
