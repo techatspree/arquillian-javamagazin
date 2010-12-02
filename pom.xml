@@ -40,7 +40,7 @@
                 <updatePolicy>never</updatePolicy>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </pluginRepository>
@@ -55,6 +55,21 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         
     </properties>
+
+	<!-- JDK 1.5 or above required -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
     <!-- Test Dependencies -->
     <dependencies>
