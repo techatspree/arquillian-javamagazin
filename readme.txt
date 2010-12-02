@@ -15,6 +15,15 @@
  Note: If you run the example you might see an ClassCastException in the console. This is caused by a bug in 
  the OpenEJB embedded container (https://issues.apache.org/jira/browse/OPENEJB-1131). Luckily it does not affect
  the execution of the test.
+ 
+ Switch container
+ ================
+ 
+ Tests will be executed against OpenEJB embedded container, by default. Glassfish Embedded 3 and JBoss AS Embedded 6 container profiles are configured out of the box:
+ *GF embedded 3: mvn test -Pglassfish-embedded-3
+ *JBoss AS Embedded 6: mvn test -Pjbossas-embedded-6
+
+ See http://docs.jboss.org/arquillian/reference/latest/en-US/html_single/#d0e708 for description of all supported containers.
 
  System requirements
  ===================
