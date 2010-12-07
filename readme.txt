@@ -26,7 +26,7 @@
  System requirements
  ===================
 
- All you need to run this project is Java 5.0 (Java SDK 1.5) or greatr and
+ All you need to run this project is Java 5.0 (Java SDK 1.5) or greater and
  Maven 2.0.10 or greater. This application is setup to be run on a Java EE 6
  certified application server. It has been tested with GlassFish V3 and JBoss
  AS 6.0.
