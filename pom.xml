@@ -17,7 +17,7 @@
         <repository>
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Maven Repository Group</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+            <url>https://repository.jboss.org/nexus/content/repositories/public</url>
             <layout>default</layout>
             <releases>
                 <enabled>true</enabled>
@@ -162,7 +162,7 @@
 
             <properties>
                 <!-- The target version of AS to be used -->
-                <version.org.jboss.jbossas>6.0.0.20101110-CR1</version.org.jboss.jbossas>
+                <version.org.jboss.jbossas>6.0.0.Final</version.org.jboss.jbossas>
 
                 <!-- jboss.home (We'll unpack into here -->
                 <jboss.home>${project.build.directory}/jboss-${version.org.jboss.jbossas}</jboss.home>
@@ -241,6 +241,7 @@
 
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.6</version>
 
                         <configuration>
                             <additionalClasspathElements>
